@@ -41,5 +41,9 @@ def test():
     return { "message": "Test API", "total": c }
 
 @app.get("/users")
-def get_users():
-    return {"message": "Users List", "data": users}
+def get_users(city: str = None):
+    return { "message": "Users List", "data": users, "filter":city }
+
+@app.get("/users/{user_id}") # GET baseUrl/users/1
+def get_user_by_id(user_id: int, city: str):
+    return { "message": "User detail", "data": users[user_id] } 
