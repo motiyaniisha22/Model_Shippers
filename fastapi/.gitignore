@@ -1,34 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/venv,visualstudiocode,windows,linux,git,jupyternotebooks,pycharm,python
-# Edit at https://www.toptal.com/developers/gitignore?templates=venv,visualstudiocode,windows,linux,git,jupyternotebooks,pycharm,python
-
-### Git ###
-# Created by git for backups. To disable backups in Git:
-# $ git config --global mergetool.keepBackup false
-*.orig
-
-# Created by git when using merge tools for conflicts
-*.BACKUP.*
-*.BASE.*
-*.LOCAL.*
-*.REMOTE.*
-*_BACKUP_*.txt
-*_BASE_*.txt
-*_LOCAL_*.txt
-*_REMOTE_*.txt
-
-### JupyterNotebooks ###
-# gitignore template for Jupyter Notebooks
-# website: http://jupyter.org/
-
-.ipynb_checkpoints
-*/.ipynb_checkpoints/*
-
-# IPython
-profile_default/
-ipython_config.py
-
-# Remove previous ipynb_checkpoints
-#   git rm -r .ipynb_checkpoints
+# Created by https://www.toptal.com/developers/gitignore/api/macos,linux,windows,pycharm,sublimetext,visualstudiocode,venv,virtualenv,python
+# Edit at https://www.toptal.com/developers/gitignore?templates=macos,linux,windows,pycharm,sublimetext,visualstudiocode,venv,virtualenv,python
 
 ### Linux ###
 *~
@@ -270,14 +241,11 @@ docs/_build/
 target/
 
 # Jupyter Notebook
-
-# IPython
 .ipynb_checkpoints
 
 # IPython
 profile_default/
 ipython_config.py
-
 
 # pyenv
 #   For a library or package, you might want to ignore these files since the code is
@@ -460,5 +428,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/windows,linux,visualstudiocode,macos,python,pycharm,venv,sublimetext
-
+# End of https://www.toptal.com/developers/gitignore/api/macos,linux,windows,pycharm,sublimetext,visualstudiocode,venv,virtualenv,python
+>>>>>>> 454326596060e3c44b8748e4a6f51039861278f6

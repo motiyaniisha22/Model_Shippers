@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel
 from typing import Annotated, Optional
 from sqlmodel import SQLModel, Field, create_engine, Session, update
+=======
+from fastapi import FastAPI 
+>>>>>>> 70cf52e91bd99554fd199be50dd6eb30b757f999
 
 app = FastAPI()
 
@@ -24,30 +28,25 @@ def on_startup():
 
 users = {
     1: {
-        "id": 1,
+        "id":1,
         "name": "John Doe",
         "city": "Ahmedabad",
-        "email": "john.doe@mailinator.com"
+        "email": "john.doe@emailinator.com"
     },
     2: {
-        "id": 2,
-        "name": "John Doe",
+        "id":2,
+        "name": "Jane Doe",
         "city": "Gandhinagar",
-        "email": "john.doe@mailinator.com"
+        "email": "jane.doe@emailinator.com"
     },
     3: {
-        "id": 3,
-        "name": "John Doe",
-        "city": "Rajkot",
-        "email": "john.doe@mailinator.com"
-    },
-    4: {
-        "id": 4,
-        "name": "John Doe",
+        "id":3,
+        "name": "Jack Doe",
         "city": "Baroda",
-        "email": "john.doe@mailinator.com"
+        "email": "jack.doe@emailinator.com"
     }
 }
+<<<<<<< HEAD
 
 class User(BaseModel):
     id: int
@@ -61,25 +60,35 @@ class UserUpdate(BaseModel):
     email: str
 
 @app.get("/hello") # http://localhost:8000/hello GET
+=======
+@app.get("/hello") #http://localhost"8000 GET
+>>>>>>> 70cf52e91bd99554fd199be50dd6eb30b757f999
 def index():
-    return { "message": "Hello World" }
+    return { "message": "Hello World!"}
 
-@app.get("/test") # http://localhost:8000/hello GET
-def test():
+@app.get("/test") #http://localhost"8000 GET
+def index():
     a = 10
     b = 20
-    c = a + b
-    return { "message": "Test API", "total": c }
+    c = a + b 
+    return { "message" : "Test API", "Total" : c }
 
+<<<<<<< HEAD
 @app.get("/users", status_code=200)
 def get_users(x_api_key: Annotated[str | None, Header()] = None, city: str = None):
     with Session(engine) as session:
         users = session.query(Users).all() # select * from users
         print(f'Users list {users}')
         return { "message": "Users List", "data": users, "header": x_api_key }
+=======
+@app.get("/users/")
+def get_users(city: str = None):
+    return { "message": "Users list", "data": users, "filter": city }
+>>>>>>> 70cf52e91bd99554fd199be50dd6eb30b757f999
 
-@app.get("/users/{user_id}") # GET baseUrl/users/1
+@app.get("/users/{user_id}")  # GET baseUrl/users/1
 def get_user_by_id(user_id: int, city: str):
+<<<<<<< HEAD
     return { "message": "User detail", "data": users[user_id] } 
 
 @app.post("/users")
@@ -107,3 +116,8 @@ def delete_user(user_id: int):
     
     del users[user_id]
     return {"message": "User deleted successfully", "data": users}
+=======
+    return { "message": "User detail", "data": users[user_id], "filter": city }
+
+
+>>>>>>> 70cf52e91bd99554fd199be50dd6eb30b757f999
