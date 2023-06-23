@@ -1,7 +1,26 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Header, HTTPException
 from pydantic import BaseModel
+from typing import Annotated, Optional
+from sqlmodel import SQLModel, Field, create_engine, Session, update
 
 app = FastAPI()
+
+DATABASE_URL = 'postgresql://postgres:dhruvi@localhost/ML_Model'
+
+engine = create_engine(DATABASE_URL)
+
+def create_db_and_tables():
+    SQLModel.metadata.create_all(engine)
+
+class Users(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    name: str
+    city: str
+    email: str 
+
+@app.on_event("startup")
+def on_startup():
+    create_db_and_tables()
 
 users = {
     1: {
@@ -52,14 +71,12 @@ def test():
     c = a + b
     return { "message": "Test API", "total": c }
 
-@app.get("/users")
-def get_users(city: str = None):
-    if city is None:
-        return { "message": "Users List", "data": list(users.values()) }
-    
-    filtered_users = [user for user in users.values() if user.get('city').lower() 
-    == city.lower()]
-    return { "message": "Users List", "data": filtered_users}
+@app.get("/users", status_code=200)
+def get_users(x_api_key: Annotated[str | None, Header()] = None, city: str = None):
+    with Session(engine) as session:
+        users = session.query(Users).all() # select * from users
+        print(f'Users list {users}')
+        return { "message": "Users List", "data": users, "header": x_api_key }
 
 @app.get("/users/{user_id}") # GET baseUrl/users/1
 def get_user_by_id(user_id: int, city: str):
